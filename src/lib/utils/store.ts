@@ -27,18 +27,17 @@ export function filterExpensesByCategory(expenses: Expense[]): Map<string, numbe
 	return map;
 }
 
-export function getMonthlyExpenseData(monthly_expense: Expense[]) {
+export function getMonthlyData(monthly_data: Expense[] | Income[]) {
 	const values: number[] = [];
-	const labels = [...new Set(monthly_expense.map((expense) => expense.category))];
+	const labels = [...new Set(monthly_data.map((i) => i.category))];
 	labels.forEach((label) => {
 		values.push(
-			monthly_expense
-				.filter((expense) => expense.category === label)
-				.reduce((acc, expense) => acc + expense.amount, 0)
+			monthly_data
+				.filter((i) => i.category === label)
+				.reduce((acc, i) => acc + i.amount, 0)
 		);
 	});
 
-	console.log(values);
 	return {
 		labels: labels,
 		datasets: [
@@ -49,6 +48,7 @@ export function getMonthlyExpenseData(monthly_expense: Expense[]) {
 		]
 	};
 }
+
 
 export function filterIncomeByCategory(income: Income[]): Map<string, number> {
 	const map = new Map();

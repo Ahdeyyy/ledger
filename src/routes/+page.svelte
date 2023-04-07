@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { accounts, StringToMap, getMonthlyExpenseData } from '$lib/utils/store';
+	import { accounts, StringToMap, getMonthlyData } from '$lib/utils/store';
 
 	import type { Account, Expense, Income } from '$lib/utils/types';
 	import AccountForm from '$lib/components/AccountForm.svelte';
@@ -58,6 +58,11 @@
 		labels: [],
 		datasets: []
 	};
+	let pie_income_data: any = {
+		labels: [],
+		datasets: []
+	};
+	
 
 	if (a_map.size > 0) {
 		account_id = a_map.keys().next().value;
@@ -75,7 +80,8 @@
 			}
 		});
 
-		pie_expense_data = getMonthlyExpenseData(monthly_expense);
+		pie_expense_data = getMonthlyData(monthly_expense);
+		pie_income_data = getMonthlyData(monthly_income)
 	}
 
 	$: {
@@ -98,7 +104,8 @@
 			}
 		});
 
-		pie_expense_data = getMonthlyExpenseData(monthly_expense);
+		pie_expense_data = getMonthlyData(monthly_expense);
+		pie_income_data = getMonthlyData(monthly_income)
 	}
 </script>
 
@@ -127,7 +134,7 @@
 		</AccordionItem>
 	</Accordion>
 
-	<h3 class="text-center font-bold text-xl mt-5">{account.name}</h3>
+	<h3 class="text-center font-bold text-xl mt-5 uppercase">{account.name}</h3>
 
 	<section class="grid grid-cols-3 gap-4 mt-5">
 		<div class="card rounded-md grid gap-3 variant-soft-surface p-4">
@@ -146,13 +153,22 @@
 		</article>
 	</section>
 
-	<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Expenses</h3>
+	<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly Expense</h3>
 	<section class="grid grid-cols-3 mt-5 gap-4">
 		<div class="variant-glass-secondary rounded-md">
 			<Chart maxSlices="4" data={pie_expense_data} type="donut" />
 		</div>
 		<div class="col-span-2">
 			<RecordList records={monthly_expense} currency={account.currency} />
+		</div>
+	</section>
+	<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly income</h3>
+	<section class="grid grid-cols-3 mt-5 gap-4">
+		<div class="variant-glass-secondary rounded-md">
+			<Chart maxSlices="4" data={pie_income_data} type="donut" />
+		</div>
+		<div class="col-span-2">
+			<RecordList records={monthly_income} currency={account.currency} />
 		</div>
 	</section>
 {:else}
