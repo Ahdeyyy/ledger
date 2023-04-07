@@ -14,10 +14,11 @@
 	};
 	// We've created a custom submit function to pass the response and close the modal.
 	function onFormSubmit(): void {
-		
 		if ($modalStore[0].response) $modalStore[0].response(formData);
-		let id = Math.random().toString(36).substr(1, 9);
-
+		let rand_ind = Math.floor(Math.random() * 9);
+		let id = Math.random()
+			.toString(36)
+			.slice(rand_ind, rand_ind + 9);
 		const objs = StringToMap($accounts);
 
 		const entries: [string, Account][] = Object.entries(objs);
@@ -25,7 +26,9 @@
 		const a_map: Map<string, Account> = new Map(entries);
 
 		if (a_map.has(id)) {
-			id = Math.random().toString(36).substr(1, 9);
+			id = Math.random()
+				.toString(36)
+				.slice(rand_ind, rand_ind + 9);
 		}
 		const new_account: Account = {
 			id: id,

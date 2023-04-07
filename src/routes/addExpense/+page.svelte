@@ -13,10 +13,11 @@
 	let account_id: string = a_map.keys().next().value;
 
 	// generate random id
-	let id = Math.random().toString(36).substr(1, 9);
+	let rand_ind = Math.floor(Math.random() * 9)
+	let id = Math.random().toString(36).slice(rand_ind, rand_ind + 9);
 
 	if (a_map.has(id)) {
-		id = Math.random().toString(36).substr(1, 9);
+		id = Math.random().toString(36).slice(rand_ind, rand_ind + 9);
 	}
 
 	let expense: Expense = {
