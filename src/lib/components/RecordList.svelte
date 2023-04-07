@@ -15,7 +15,6 @@
 				<svelte:fragment slot="summary">{record.amount} {currency}</svelte:fragment>
 				<svelte:fragment slot="content">
 					<p class="font-token text-token flex justify-between">
-						<span>{record.id}</span>
 						<span>{record.category} </span>
 						<span>{record.amount} {currency}</span>
 						<span>{record.date}</span>
