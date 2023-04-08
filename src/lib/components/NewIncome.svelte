@@ -7,7 +7,7 @@
 		toastStore
 	} from '@skeletonlabs/skeleton';
 	import type { ToastSettings } from '@skeletonlabs/skeleton';
-	import { AccountCircleFill } from 'svelte-remixicon';
+	import { AccountCircleFill, AddLine } from 'svelte-remixicon';
 
 	import { accounts, MapToString, StringToMap } from '$lib/utils/store';
 	import type { Account, Income } from '$lib/utils/types';
@@ -44,8 +44,8 @@
 		// handle form submission
 		if (income.amount === undefined || income.amount <= 0) {
 			const t: ToastSettings = {
-				message: 'Please enter an amount',
-				background: 'variant-filled-warning',
+				message: 'Please enter a valid amount',
+				background: 'variant-filled-error',
 				classes: 'rounded-md p-2 font-token text-dark-token text-token',
 				timeout: 2500
 			};
@@ -132,7 +132,12 @@
 		/>
 	</div>
 	<button
-		class="btn rounded-md font-token variant-glass-primary uppercase w-1/2 mx-auto text-center"
-		type="submit">Add</button
+		class="btn flex justify-start gap-x-10 rounded-md mx-auto font-token w-1/3 variant-glass-primary uppercase text-center"
+		type="submit">
+        <span >
+            <AddLine class="w-6 h-6" />
+        </span>
+        Add
+        </button
 	>
 </form>

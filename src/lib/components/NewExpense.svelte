@@ -146,6 +146,6 @@
 
 	<button
 		type="submit"
-		class="btn variant-soft-primary uppercase rounded-token w-1/2 mx-auto text-center">Add</button
+		class="btn variant-soft-primary uppercase rounded-token w-1/3 mx-auto text-center">Add</button
 	>
 </form>

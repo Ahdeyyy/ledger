@@ -6,7 +6,7 @@
 	let tabSet: number = 0;
 </script>
 
-<TabGroup>
+<TabGroup justify="justify-center" >
 	<Tab bind:group={tabSet} name="income" value={0}>Income</Tab>
 	<Tab bind:group={tabSet} name="expense" value={1}>Expense</Tab>
 	<svelte:fragment slot="panel" >
