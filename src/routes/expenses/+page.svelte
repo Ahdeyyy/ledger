@@ -15,10 +15,10 @@
 
 	let account_id: string = a_map.keys().next().value ;
 
-	let expenses = a_map.get(account_id)?.expenses as Array<Expense>;
+	let expenses = a_map.get(account_id)?.expenses || [];
 
 	$: {
-		expenses = a_map.get(account_id)?.expenses as Array<Expense>;
+		expenses = a_map.get(account_id)?.expenses || [];
 	}
 
 	tableSource = {

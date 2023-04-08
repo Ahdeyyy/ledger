@@ -76,7 +76,7 @@
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">
 				<span class="font-token font-semibold capitalize">
-					{a_map.get(account_id)?.name}
+					{a_map.get(account_id)?.name || "account"}
 				</span>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
