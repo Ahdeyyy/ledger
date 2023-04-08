@@ -14,6 +14,7 @@
 	} from '@skeletonlabs/skeleton';
 	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
 	import { AccountCircleFill, AddLine } from 'svelte-remixicon';
+	//@ts-expect-error
 	import Chart from 'svelte-frappe-charts';
 
 	const modalComponent: ModalComponent = {
@@ -36,8 +37,8 @@
 		modalStore.trigger(d);
 	}
 
-	const entries = StringToMap($accounts).entries();
-	const a_map: Map<string, Account> = new Map(entries);
+	let entries = StringToMap($accounts).entries();
+	let a_map: Map<string, Account> = new Map(entries);
 
 	let account_id: string;
 	let account: Account = {
@@ -62,7 +63,6 @@
 		labels: [],
 		datasets: []
 	};
-	
 
 	if (a_map.size > 0) {
 		account_id = a_map.keys().next().value;
@@ -81,12 +81,13 @@
 		});
 
 		pie_expense_data = getMonthlyData(monthly_expense);
-		pie_income_data = getMonthlyData(monthly_income)
+		pie_income_data = getMonthlyData(monthly_income);
 	}
 
 	$: {
 		account = a_map.get(account_id) as Account;
-		console.log(account_id);
+		entries = StringToMap($accounts).entries();
+		a_map = new Map(entries);
 		total_monthly_income = 0.0;
 		total_monthly_expense = 0.0;
 		monthly_income = [];
@@ -105,13 +106,13 @@
 		});
 
 		pie_expense_data = getMonthlyData(monthly_expense);
-		pie_income_data = getMonthlyData(monthly_income)
+		pie_income_data = getMonthlyData(monthly_income);
 	}
 </script>
 
 {#if a_map.size > 0}
 	<Accordion>
-		<AccordionItem rounded="rounded-md">
+		<AccordionItem duration={Number(1000)} rounded="rounded-md">
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">Accounts</svelte:fragment>
 			<svelte:fragment slot="content">
@@ -173,7 +174,7 @@
 	</section>
 {:else}
 	<Accordion>
-		<AccordionItem>
+		<AccordionItem duration={Number(1000)} rounded="rounded-md">
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-6 h-6" /></svelte:fragment>
 			<svelte:fragment slot="summary">Accounts</svelte:fragment>
 			<svelte:fragment slot="content">
