@@ -17,19 +17,13 @@
 			icon: DashboardFill,
 			class: ''
 		},
-
 		{
-			path: '/addIncome',
-			label: 'Add Income',
+			path: '/add',
+			label: 'new',
 			icon: AddLine,
-			class: 'text-green-600'
+			class: 'text-soft-primary'
 		},
-		{
-			path: '/addExpense',
-			label: 'Add Expense',
-			icon: AddLine,
-			class: 'text-red-600'
-		},
+		
 		{
 			path: '/incomes',
 			label: 'Incomes',
@@ -68,17 +62,7 @@
 			{/each}
 
 		</AppRail>
-		<!-- <nav class="list-nav">
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
-				<li><a href="/addIncome">Add Income</a></li>
-				<li><a href="/addExpense">Add Expense</a></li>
-				<li><a href="/incomes">Incomes</a></li>
-				<li><a href="/expenses">Expenses</a></li>
-			</ul>
-		</nav> -->
-		<!-- --- -->
+		
 	</svelte:fragment>
 
 	<div class="container h-full mx-auto p-6">
