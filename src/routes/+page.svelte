@@ -85,26 +85,27 @@
 	}
 
 	$: {
-		account = a_map.get(account_id) as Account;
 		entries = StringToMap($accounts).entries();
 		a_map = new Map(entries);
+		account = a_map.get(account_id) as Account;
 		total_monthly_income = 0.0;
 		total_monthly_expense = 0.0;
 		monthly_income = [];
 		monthly_expense = [];
-		account.incomes.forEach((income) => {
-			if (new Date(income.date).getMonth() === current_month) {
-				monthly_income.push(income);
-				total_monthly_income += income.amount;
-			}
-		});
-		account.expenses.forEach((expense) => {
-			if (new Date(expense.date).getMonth() === current_month) {
-				monthly_expense.push(expense);
-				total_monthly_expense += expense.amount;
-			}
-		});
-
+		if (a_map.size > 0) {
+			account.incomes.forEach((income) => {
+				if (new Date(income.date).getMonth() === current_month) {
+					monthly_income.push(income);
+					total_monthly_income += income.amount;
+				}
+			});
+			account.expenses.forEach((expense) => {
+				if (new Date(expense.date).getMonth() === current_month) {
+					monthly_expense.push(expense);
+					total_monthly_expense += expense.amount;
+				}
+			});
+		}
 		pie_expense_data = getMonthlyData(monthly_expense);
 		pie_income_data = getMonthlyData(monthly_income);
 	}
