@@ -12,16 +12,18 @@
 
 	let account_id: string = a_map.keys().next().value;
 
-	let incomes = a_map.get(account_id)?.incomes.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)) as Array<Income>;
-	
+	let incomes =
+		a_map.get(account_id)?.incomes.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)) || [];
 
 	$: {
-		incomes = a_map.get(account_id)?.incomes.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)) as Array<Income>;
+		incomes = a_map
+			.get(account_id)
+			?.incomes.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)) || [];
 	}
 
 	tableSource = {
 		head: ['Category', 'Amount', 'Date'],
-		body: tableMapperValues(incomes, [ 'category', 'amount', 'date']),
+		body: tableMapperValues(incomes, ['category', 'amount', 'date']),
 		meta: tableMapperValues(incomes, ['id', 'category', 'amount', 'date'])
 	};
 
@@ -39,7 +41,7 @@
 </section>
 
 <section class="grid gap-5">
-	{#if incomes.length > 0}
+	{#if incomes}
 		<Table
 			text="table p-2 font-token text-dark-token text-token rounded"
 			interactive={true}

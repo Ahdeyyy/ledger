@@ -85,26 +85,27 @@
 	}
 
 	$: {
-		account = a_map.get(account_id) as Account;
 		entries = StringToMap($accounts).entries();
 		a_map = new Map(entries);
+		account = a_map.get(account_id) as Account;
 		total_monthly_income = 0.0;
 		total_monthly_expense = 0.0;
 		monthly_income = [];
 		monthly_expense = [];
-		account.incomes.forEach((income) => {
-			if (new Date(income.date).getMonth() === current_month) {
-				monthly_income.push(income);
-				total_monthly_income += income.amount;
-			}
-		});
-		account.expenses.forEach((expense) => {
-			if (new Date(expense.date).getMonth() === current_month) {
-				monthly_expense.push(expense);
-				total_monthly_expense += expense.amount;
-			}
-		});
-
+		if (a_map.size > 0) {
+			account.incomes.forEach((income) => {
+				if (new Date(income.date).getMonth() === current_month) {
+					monthly_income.push(income);
+					total_monthly_income += income.amount;
+				}
+			});
+			account.expenses.forEach((expense) => {
+				if (new Date(expense.date).getMonth() === current_month) {
+					monthly_expense.push(expense);
+					total_monthly_expense += expense.amount;
+				}
+			});
+		}
 		pie_expense_data = getMonthlyData(monthly_expense);
 		pie_income_data = getMonthlyData(monthly_income);
 	}
@@ -173,16 +174,11 @@
 		</div>
 	</section>
 {:else}
-	<Accordion>
-		<AccordionItem duration={Number(1000)} rounded="rounded-md">
-			<svelte:fragment slot="lead"><AccountCircleFill class="w-6 h-6" /></svelte:fragment>
-			<svelte:fragment slot="summary">Accounts</svelte:fragment>
-			<svelte:fragment slot="content">
-				<button on:click={openModal} type="button" class="btn variant-soft-primary">
-					<span><AddLine class="w-4 h-4" /></span>
-					<span>Create Account</span>
-				</button>
-			</svelte:fragment>
-		</AccordionItem>
-	</Accordion>
+	<section class="grid place-content-center gap-10">
+		<p class="font-semibold font-heading-token text-4xl">Get started, create an account.</p>
+		<button on:click={openModal} type="button" class="btn variant-soft-primary">
+			<span><AddLine class="w-4 h-4" /></span>
+			<span>Create Account</span>
+		</button>
+	</section>
 {/if}
