@@ -8,6 +8,8 @@ type AccountMap = Map<string, Account>;
 const emptyMap: AccountMap = new Map();
 
 export const accounts: AccountStore = localStorageStore('account', MapToString(emptyMap));
+export const addTabSet: Writable<number> = localStorageStore('addTabSet', 0);
+export const recordTabSet: Writable<number> = localStorageStore('recordTabSet', 0);
 
 export function MapToString(map: AccountMap): string {
 	return JSON.stringify(Array.from(map.entries()));
@@ -32,9 +34,7 @@ export function getMonthlyData(monthly_data: Expense[] | Income[]) {
 	const labels = [...new Set(monthly_data.map((i) => i.category))];
 	labels.forEach((label) => {
 		values.push(
-			monthly_data
-				.filter((i) => i.category === label)
-				.reduce((acc, i) => acc + i.amount, 0)
+			monthly_data.filter((i) => i.category === label).reduce((acc, i) => acc + i.amount, 0)
 		);
 	});
 
@@ -48,7 +48,6 @@ export function getMonthlyData(monthly_data: Expense[] | Income[]) {
 		]
 	};
 }
-
 
 export function filterIncomeByCategory(income: Income[]): Map<string, number> {
 	const map = new Map();

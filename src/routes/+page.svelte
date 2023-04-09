@@ -87,6 +87,7 @@
 	$: {
 		entries = StringToMap($accounts).entries();
 		a_map = new Map(entries);
+		if (account_id === undefined) account_id = a_map.keys().next().value;
 		account = a_map.get(account_id) as Account;
 		total_monthly_income = 0.0;
 		total_monthly_expense = 0.0;
@@ -157,7 +158,7 @@
 
 	<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly Expense</h3>
 	<section class="grid grid-cols-3 mt-5 gap-4">
-		<div class="variant-glass-secondary rounded-md">
+		<div class="variant-glass-secondary rounded-lg">
 			<Chart maxSlices="4" data={pie_expense_data} type="donut" />
 		</div>
 		<div class="col-span-2">
@@ -166,7 +167,7 @@
 	</section>
 	<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly income</h3>
 	<section class="grid grid-cols-3 mt-5 gap-4">
-		<div class="variant-glass-secondary rounded-md">
+		<div class="variant-glass-secondary rounded-lg">
 			<Chart maxSlices="4" data={pie_income_data} type="donut" />
 		</div>
 		<div class="col-span-2">

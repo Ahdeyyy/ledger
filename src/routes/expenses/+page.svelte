@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { accounts, StringToMap , MapToString } from '$lib/utils/store';
+	import { accounts, StringToMap , MapToString, addTabSet } from '$lib/utils/store';
 	import { Table, tableMapperValues } from '@skeletonlabs/skeleton';
 	import type { TableSource } from '@skeletonlabs/skeleton';
 	import type { Account, Expense } from '$lib/utils/types';
@@ -48,8 +48,8 @@
 			on:selected={selectionHandler}
 			source={tableSource}
 		/>
-		<a href="/addExpense" class="btn w-1/2 mx-auto variant-soft-primary uppercase">add expense</a>
+		<a on:click={()=>{$addTabSet = 1}} href="/add" class="btn w-1/2 mx-auto variant-soft-primary uppercase">add expense</a>
 	{:else}
-		<a href="/addExpense" class="btn w-1/2 mx-auto variant-soft-primary uppercase">add expense</a>
+		<a on:click={()=>{$addTabSet = 1}} href="/add" class="btn w-1/2 mx-auto variant-soft-primary uppercase">add expense</a>
 	{/if}
 </section>
