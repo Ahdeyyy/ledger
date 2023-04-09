@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { accounts, StringToMap, getMonthlyData, current_account_id } from '$lib/utils/store';
+	import {
+		accounts,
+		StringToMap,
+		getMonthlyData,
+		current_account_id,
+		MapToString
+	} from '$lib/utils/store';
 
 	import type { Account, Expense, Income } from '$lib/utils/types';
 	import AccountForm from '$lib/components/AccountForm.svelte';
@@ -13,7 +19,7 @@
 		AccordionItem
 	} from '@skeletonlabs/skeleton';
 	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-	import { AccountCircleFill, AddLine } from 'svelte-remixicon';
+	import { AccountCircleFill, AddLine, DeleteBin6Line } from 'svelte-remixicon';
 	//@ts-expect-error
 	import Chart from 'svelte-frappe-charts';
 
@@ -39,6 +45,7 @@
 
 	let entries = StringToMap($accounts).entries();
 	let a_map: Map<string, Account> = new Map(entries);
+	console.log($accounts);
 
 	let account: Account = {
 		name: '',
@@ -86,7 +93,8 @@
 	$: {
 		entries = StringToMap($accounts).entries();
 		a_map = new Map(entries);
-		if ($current_account_id === undefined || $current_account_id === '') $current_account_id = a_map.keys().next().value;
+		if (($current_account_id === undefined || $current_account_id === '') && a_map.size > 0)
+			$current_account_id = a_map.keys().next().value;
 		account = a_map.get($current_account_id) as Account;
 		total_monthly_income = 0.0;
 		total_monthly_expense = 0.0;
@@ -120,12 +128,30 @@
 				<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
 					{#each [...a_map] as [key, account]}
 						<ListBoxItem
-							rounded="rounded-md"
+							rounded="rounded-md "
 							padding="p-2"
 							bind:group={$current_account_id}
 							name="accounts"
-							value={account.id}>{account.name}</ListBoxItem
+							value={account.id}
 						>
+							<article class="grid align-baseline grid-flow-col place-content-center gap-6">
+								<span>
+									{account.name}
+								</span>
+								<button
+									on:click={() => {
+										accounts.update((a) => {
+											const acc = StringToMap(a);
+											acc.delete(account.id);
+											return MapToString(acc);
+										});
+										$current_account_id = '';
+									}}
+								>
+									<DeleteBin6Line class="w-4 h-4" />
+								</button>
+							</article>
+						</ListBoxItem>
 					{/each}
 				</ListBox>
 				<button on:click={openModal} type="button" class="btn variant-soft-primary">

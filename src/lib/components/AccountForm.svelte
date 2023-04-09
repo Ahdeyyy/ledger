@@ -4,6 +4,9 @@
 	// Props
 	/** Exposes parent props to this component. */
 	export let parent: any;
+
+	type formAct = 'Create' | 'Edit'
+	export let action = 'Create'
 	// Stores
 	import { modalStore } from '@skeletonlabs/skeleton';
 	// Form Data
@@ -44,10 +47,7 @@
 			acc.set(id, new_account);
 			return MapToString(acc);
 		});
-		console.log($accounts);
-		localStorage.setItem('accounts', JSON.stringify($accounts));
-		console.log(localStorage.getItem('accounts'));
-		modalStore.close();
+		modalStore.close()
 	}
 
 	// Base Classes
@@ -89,6 +89,6 @@
 	<!-- prettier-ignore -->
 	<footer class="modal-footer {parent.regionFooter}">
         <button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
-        <button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Create Account</button>
+        <button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>{action} Account</button>
     </footer>
 </div>
