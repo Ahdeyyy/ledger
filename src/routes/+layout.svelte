@@ -37,12 +37,12 @@
 <AppShell slotSidebarLeft="w-24">
 	<svelte:fragment slot="sidebarLeft">
 		<!-- Insert the list: -->
-		<AppRail width="w-full" background="variant-soft-surface">
+		<AppRail  width="w-full" background="variant-soft-surface">
 			{#each pages as item}
 				<AppRailTile
 					label={item.label}
 					tag="a"
-					class={item.path === $page.url.pathname ? '!bg-primary-500' : ''}
+					class={item.path === $page.url.pathname ? '!variant-filled-primary' : ''}
 					href={item.path}
 				>
 					<svelte:component this={item.icon} class="w-10 h-10 {item.class}" />

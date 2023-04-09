@@ -98,7 +98,7 @@
 			<span>Balance</span>
 			<input
 				class="input"
-				type="number"
+				type="tel"
 				bind:value={formData.balance}
 				placeholder="Enter balance..."
 			/>

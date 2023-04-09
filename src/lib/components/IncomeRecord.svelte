@@ -83,11 +83,11 @@
 				$addTabSet = 0;
 			}}
 			href="/add"
-			class="btn w-1/2 mx-auto variant-soft-primary uppercase">add income</a
+			class="btn w-1/2 mx-auto rounded-md variant-soft-primary uppercase">add income</a
 		>
 	{:else if a_map.size === 0}
 		<div class="grid place-content-center p-3">
-			<a class="btn variant-soft-primary" href="/">Create an account</a>
+			<a class="btn rounded-md variant-soft-primary" href="/">Create an account</a>
 		</div>
 	{:else}
 		<div class="grid place-content-center p-3">
@@ -96,7 +96,7 @@
 					$addTabSet = 0;
 				}}
 				href="/add"
-				class="btn variant-soft-primary uppercase">add income</a
+				class="btn rounded-md variant-soft-primary uppercase">add income</a
 			>
 		</div>
 	{/if}

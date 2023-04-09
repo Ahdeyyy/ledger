@@ -26,10 +26,17 @@
 
 	const a_map: Map<string, Account> = new Map(entries);
 
-	let expenses = a_map.get($current_account_id)?.expenses || [];
+	let expenses =
+		a_map
+			.get($current_account_id)
+			?.expenses.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)) || [];
 
 	$: {
-		expenses = a_map.get($current_account_id)?.expenses || [];
+		expenses =
+			a_map
+				.get($current_account_id)
+				?.expenses.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)) || [];
+
 		tableSource = {
 			head: ['Category', 'Amount', 'Date'],
 			body: tableMapperValues(expenses, ['category', 'amount', 'date']),
@@ -85,11 +92,11 @@
 				$addTabSet = 1;
 			}}
 			href="/add"
-			class="btn w-1/2 mx-auto variant-soft-primary uppercase">add expense</a
+			class="btn w-1/2 mx-auto rounded-md variant-soft-primary uppercase">add expense</a
 		>
 	{:else if a_map.size === 0}
 		<div class="grid place-content-center p-3">
-			<a class="btn variant-soft-primary" href="/">Create an account</a>
+			<a class="btn rounded-md variant-soft-primary" href="/">Create an account</a>
 		</div>
 	{:else}
 		<div class="grid place-content-center p-3">
@@ -98,7 +105,7 @@
 					$addTabSet = 1;
 				}}
 				href="/add"
-				class="btn variant-soft-primary uppercase">add expense</a
+				class="btn rounded-md variant-soft-primary uppercase">add expense</a
 			>
 		</div>
 	{/if}

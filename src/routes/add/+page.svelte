@@ -18,7 +18,7 @@
 				<NewIncome />
 			{:else}
 			<div class="grid place-content-center p-3" >
-				<a class="btn variant-soft-primary" href="/">Create an account</a>
+				<a class="btn rounded-md variant-soft-primary" href="/">Create an account</a>
 
 			</div>
 			{/if}
@@ -27,7 +27,7 @@
 				<NewExpense />
 			{:else}
 			<div class="grid place-content-center p-3" >
-				<a class="btn variant-soft-primary" href="/">Create an account</a>
+				<a class="btn rounded-md variant-soft-primary" href="/">Create an account</a>
 
 			</div>
 			{/if}

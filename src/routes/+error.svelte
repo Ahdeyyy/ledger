@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<section class="grid place-content-center font-semibold ">
+<section class="grid place-content-center h-screen font-semibold ">
 	<p>
 		<span class="text-9xl">
 			{$page.status}

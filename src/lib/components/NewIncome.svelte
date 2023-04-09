@@ -147,12 +147,9 @@
 		/>
 	</div>
 	<button
-		class="btn flex justify-start gap-x-10 rounded-md mx-auto font-token w-1/3 variant-glass-primary uppercase text-center"
+		class="btn  gap-x-10 rounded-md mx-auto font-token w-1/3 variant-glass-primary uppercase text-center"
 		type="submit"
 	>
-		<span>
-			<AddLine class="w-6 h-6" />
-		</span>
 		Add
 	</button>
 </form>
