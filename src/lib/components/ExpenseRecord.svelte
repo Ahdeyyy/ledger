@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { accounts, StringToMap, MapToString, addTabSet } from '$lib/utils/store';
+	import {
+		accounts,
+		StringToMap,
+		MapToString,
+		addTabSet,
+		current_account_id
+	} from '$lib/utils/store';
 	import {
 		Accordion,
 		AccordionItem,
@@ -20,12 +26,15 @@
 
 	const a_map: Map<string, Account> = new Map(entries);
 
-	let account_id: string = a_map.keys().next().value;
-
-	let expenses = a_map.get(account_id)?.expenses || [];
+	let expenses = a_map.get($current_account_id)?.expenses || [];
 
 	$: {
-		expenses = a_map.get(account_id)?.expenses || [];
+		expenses = a_map.get($current_account_id)?.expenses || [];
+		tableSource = {
+			head: ['Category', 'Amount', 'Date'],
+			body: tableMapperValues(expenses, ['category', 'amount', 'date']),
+			meta: tableMapperValues(expenses, ['Id', 'category', 'amount', 'date'])
+		};
 	}
 
 	tableSource = {
@@ -45,16 +54,16 @@
 		<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 		<svelte:fragment slot="summary">
 			<span class="font-token font-semibold capitalize">
-				{a_map.get(account_id)?.name || 'account'}
+				{a_map.get($current_account_id)?.name || 'account'}
 			</span>
 		</svelte:fragment>
 		<svelte:fragment slot="content">
-			<ListBox rounded="rounded" spacing="space-y-3" bind:value={account_id}>
+			<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
 				{#each [...a_map] as [key, account]}
 					<ListBoxItem
 						rounded="rounded-md"
 						padding="p-2 capitalize"
-						bind:group={account_id}
+						bind:group={$current_account_id}
 						name="accounts"
 						value={account.id}>{account.name}</ListBoxItem
 					>

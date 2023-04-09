@@ -10,6 +10,7 @@ const emptyMap: AccountMap = new Map();
 export const accounts: AccountStore = localStorageStore('account', MapToString(emptyMap));
 export const addTabSet: Writable<number> = localStorageStore('addTabSet', 0);
 export const recordTabSet: Writable<number> = localStorageStore('recordTabSet', 0);
+export const current_account_id: Writable<string> = localStorageStore('current_account_id', '');
 
 export function MapToString(map: AccountMap): string {
 	return JSON.stringify(Array.from(map.entries()));
@@ -34,7 +35,9 @@ export function getMonthlyData(monthly_data: Expense[] | Income[]) {
 	const labels = [...new Set(monthly_data.map((i) => i.category))];
 	labels.forEach((label) => {
 		values.push(
-			monthly_data.filter((i) => i.category === label).reduce((acc, i) => Number(acc) + Number(i.amount), 0)
+			monthly_data
+				.filter((i) => i.category === label)
+				.reduce((acc, i) => Number(acc) + Number(i.amount), 0)
 		);
 	});
 

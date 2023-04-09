@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { accounts, StringToMap, getMonthlyData } from '$lib/utils/store';
+	import { accounts, StringToMap, getMonthlyData, current_account_id } from '$lib/utils/store';
 
 	import type { Account, Expense, Income } from '$lib/utils/types';
 	import AccountForm from '$lib/components/AccountForm.svelte';
@@ -40,7 +40,6 @@
 	let entries = StringToMap($accounts).entries();
 	let a_map: Map<string, Account> = new Map(entries);
 
-	let account_id: string;
 	let account: Account = {
 		name: '',
 		incomes: [],
@@ -65,8 +64,8 @@
 	};
 
 	if (a_map.size > 0) {
-		account_id = a_map.keys().next().value;
-		account = a_map.get(account_id) as Account;
+		$current_account_id = a_map.keys().next().value;
+		account = a_map.get($current_account_id) as Account;
 		account.incomes.forEach((income) => {
 			if (new Date(income.date).getMonth() === current_month) {
 				monthly_income.push(income);
@@ -87,8 +86,8 @@
 	$: {
 		entries = StringToMap($accounts).entries();
 		a_map = new Map(entries);
-		if (account_id === undefined) account_id = a_map.keys().next().value;
-		account = a_map.get(account_id) as Account;
+		if ($current_account_id === undefined || $current_account_id === '') $current_account_id = a_map.keys().next().value;
+		account = a_map.get($current_account_id) as Account;
 		total_monthly_income = 0.0;
 		total_monthly_expense = 0.0;
 		monthly_income = [];
@@ -118,12 +117,12 @@
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">Accounts</svelte:fragment>
 			<svelte:fragment slot="content">
-				<ListBox rounded="rounded" spacing="space-y-3" bind:value={account_id}>
+				<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
 					{#each [...a_map] as [key, account]}
 						<ListBoxItem
 							rounded="rounded-md"
 							padding="p-2"
-							bind:group={account_id}
+							bind:group={$current_account_id}
 							name="accounts"
 							value={account.id}>{account.name}</ListBoxItem
 						>
