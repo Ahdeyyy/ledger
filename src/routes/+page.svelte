@@ -70,13 +70,13 @@
 		account.incomes.forEach((income) => {
 			if (new Date(income.date).getMonth() === current_month) {
 				monthly_income.push(income);
-				total_monthly_income += income.amount;
+				total_monthly_income += Number(income.amount);
 			}
 		});
 		account.expenses.forEach((expense) => {
 			if (new Date(expense.date).getMonth() === current_month) {
 				monthly_expense.push(expense);
-				total_monthly_expense += expense.amount;
+				total_monthly_expense += Number(expense.amount);
 			}
 		});
 
@@ -97,13 +97,13 @@
 			account.incomes.forEach((income) => {
 				if (new Date(income.date).getMonth() === current_month) {
 					monthly_income.push(income);
-					total_monthly_income += income.amount;
+					total_monthly_income += Number(income.amount);
 				}
 			});
 			account.expenses.forEach((expense) => {
 				if (new Date(expense.date).getMonth() === current_month) {
 					monthly_expense.push(expense);
-					total_monthly_expense += expense.amount;
+					total_monthly_expense += Number(expense.amount);
 				}
 			});
 		}

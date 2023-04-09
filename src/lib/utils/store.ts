@@ -34,7 +34,7 @@ export function getMonthlyData(monthly_data: Expense[] | Income[]) {
 	const labels = [...new Set(monthly_data.map((i) => i.category))];
 	labels.forEach((label) => {
 		values.push(
-			monthly_data.filter((i) => i.category === label).reduce((acc, i) => acc + i.amount, 0)
+			monthly_data.filter((i) => i.category === label).reduce((acc, i) => Number(acc) + Number(i.amount), 0)
 		);
 	});
 

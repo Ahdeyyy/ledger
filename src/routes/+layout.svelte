@@ -23,21 +23,13 @@
 			icon: AddLine,
 			class: 'text-soft-primary'
 		},
-		
-		{
-			path: '/incomes',
-			label: 'Incomes',
-			icon: LineChartLine,
-			class: 'text-green-600'
-		},
-		{
-			path: '/expenses',
-			label: 'Expenses',
-			icon: LineChartLine,
-			class: 'text-red-600'
-		}
-	]
 
+		{
+			path: '/records',
+			label: 'Records',
+			icon: LineChartLine
+		}
+	];
 </script>
 
 <Modal />
@@ -46,7 +38,6 @@
 	<svelte:fragment slot="sidebarLeft">
 		<!-- Insert the list: -->
 		<AppRail width="w-full" background="variant-soft-surface">
-
 			{#each pages as item}
 				<AppRailTile
 					label={item.label}
@@ -57,12 +48,8 @@
 					<svelte:component this={item.icon} class="w-10 h-10 {item.class}" />
 					<page.icon class="w-10 h-10 {item.class}" />
 				</AppRailTile>
-			
-
 			{/each}
-
 		</AppRail>
-		
 	</svelte:fragment>
 
 	<div class="container h-full mx-auto p-6">

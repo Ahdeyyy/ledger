@@ -7,7 +7,7 @@
 		toastStore
 	} from '@skeletonlabs/skeleton';
 	import type { ToastSettings } from '@skeletonlabs/skeleton';
-	import { AccountCircleFill, AddLine } from 'svelte-remixicon';
+	import { AccountCircleFill, AddLine, FunctionLine } from 'svelte-remixicon';
 
 	import { accounts, MapToString, StringToMap } from '$lib/utils/store';
 	import type { Account, Income } from '$lib/utils/types';
@@ -57,7 +57,7 @@
 		accounts.update((account) => {
 			const acc = StringToMap(account);
 			const a = acc.get(account_id) as Account;
-			a.balance += income.amount;
+			a.balance = Number(a.balance) +  Number(income.amount);
 			a?.incomes.push(income);
 			acc.set(account_id, a);
 			return MapToString(acc);
@@ -98,7 +98,7 @@
 	<Accordion>
 		<h4 class="text-center text-md font-heading-token uppercase text-token">category</h4>
 		<AccordionItem duration={Number(1000)} rounded="rounded-md" bind:value={income.category}>
-			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
+			<svelte:fragment slot="lead"><FunctionLine class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary"
 				><span class="font-token font-semibold capitalize">
 					{income.category}
