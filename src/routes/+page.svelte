@@ -19,7 +19,7 @@
 		AccordionItem
 	} from '@skeletonlabs/skeleton';
 	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-	import { AccountCircleFill, AddLine, DeleteBin6Line } from 'svelte-remixicon';
+	import { AccountCircleFill, AddLine, DeleteBin6Line, EditBoxLine } from 'svelte-remixicon';
 	//@ts-expect-error
 	import Chart from 'svelte-frappe-charts';
 
@@ -45,7 +45,6 @@
 
 	let entries = StringToMap($accounts).entries();
 	let a_map: Map<string, Account> = new Map(entries);
-	console.log($accounts);
 
 	let account: Account = {
 		name: '',
@@ -117,6 +116,31 @@
 		pie_expense_data = getMonthlyData(monthly_expense);
 		pie_income_data = getMonthlyData(monthly_income);
 	}
+
+	function edit_account(acc: Account) {
+		const modalComponent: ModalComponent = {
+			// Pass a reference to your custom component
+			ref: AccountForm,
+			// Add the component properties as key/value pairs
+			props: {
+				id: account.id,
+				name: account.name,
+				currency: account.currency,
+				balance: account.balance,
+				action: 'Edit'
+			},
+			// Provide a template literal for the default component slot
+			slot: '<p>Add new account</p>'
+		};
+		const d: ModalSettings = {
+			title: 'Edit Account',
+			body: 'Edit account',
+			type: 'component',
+			// Pass the component directly:
+			component: modalComponent
+		};
+		modalStore.trigger(d);
+	}
 </script>
 
 {#if a_map.size > 0}
@@ -149,6 +173,13 @@
 									}}
 								>
 									<DeleteBin6Line class="w-4 h-4" />
+								</button>
+								<button
+									on:click={() => {
+										edit_account(account);
+									}}
+								>
+									<EditBoxLine class="w-4 h-4" />
 								</button>
 							</article>
 						</ListBoxItem>
