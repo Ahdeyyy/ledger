@@ -117,7 +117,7 @@
 		pie_income_data = getMonthlyData(monthly_income);
 	}
 
-	function edit_account(acc: Account) {
+	function edit_account(account: Account) {
 		const modalComponent: ModalComponent = {
 			// Pass a reference to your custom component
 			ref: AccountForm,
