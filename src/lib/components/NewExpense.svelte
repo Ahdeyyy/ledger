@@ -10,7 +10,7 @@
 
 	import { accounts, StringToMap, MapToString } from '$lib/utils/store';
 	import type { Account, Expense } from '$lib/utils/types';
-	import { AccountCircleFill } from 'svelte-remixicon';
+	import { AccountCircleFill, FunctionLine } from 'svelte-remixicon';
 
 	let categories = [
 		'food',
@@ -65,11 +65,25 @@
 		accounts.update((account) => {
 			const acc = StringToMap(account);
 			const a = acc.get(account_id) as Account;
-			a.balance -= expense.amount;
+			a.balance = Number(a.balance) - Number(expense.amount);
 			a?.expenses.push(expense);
 			acc.set(account_id, a);
 			return MapToString(acc);
 		});
+		const t: ToastSettings = {
+			message: 'Expense added',
+			background: 'variant-filled-success',
+			classes: 'rounded-lg p-2 font-token text-dark-token text-token',
+			timeout: 2500
+		};
+		toastStore.trigger(t);
+		expense = {
+			id: id,
+			type: 'one-time',
+			category: 'food',
+			amount: 0.0,
+			date: new Date().toDateString()
+		};
 	}
 </script>
 
@@ -78,17 +92,13 @@
 	class="card p-5 text-token variant-soft-surface grid gap-4 rounded-md font-token text-dark-token"
 	on:submit|preventDefault={createExpense}
 >
-<Accordion>
-		<h4
-			class="text-center text-md font-heading-token uppercase text-token"
-		>
-			Account
-		</h4>
+	<Accordion>
+		<h4 class="text-center text-md font-heading-token uppercase text-token">Account</h4>
 		<AccordionItem duration={Number(1000)} rounded="rounded-md">
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">
 				<span class="font-token font-semibold capitalize">
-					{a_map.get(account_id)?.name || "accounts"}
+					{a_map.get(account_id)?.name || 'accounts'}
 				</span>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
@@ -110,7 +120,7 @@
 	<Accordion>
 		<h4 class="text-center text-md font-heading-token uppercase text-token">category</h4>
 		<AccordionItem duration={Number(1000)} rounded="rounded-md" bind:value={expense.category}>
-			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
+			<svelte:fragment slot="lead"><FunctionLine class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary"
 				><span class="font-token font-semibold capitalize">
 					{expense.category}
@@ -146,6 +156,6 @@
 
 	<button
 		type="submit"
-		class="btn variant-soft-primary uppercase rounded-token w-1/3 mx-auto text-center">Add</button
+		class="btn variant-soft-primary uppercase rounded-md w-1/3 mx-auto text-center">Add</button
 	>
 </form>

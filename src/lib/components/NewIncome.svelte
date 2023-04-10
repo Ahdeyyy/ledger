@@ -7,7 +7,7 @@
 		toastStore
 	} from '@skeletonlabs/skeleton';
 	import type { ToastSettings } from '@skeletonlabs/skeleton';
-	import { AccountCircleFill, AddLine } from 'svelte-remixicon';
+	import { AccountCircleFill, AddLine, FunctionLine } from 'svelte-remixicon';
 
 	import { accounts, MapToString, StringToMap } from '$lib/utils/store';
 	import type { Account, Income } from '$lib/utils/types';
@@ -57,11 +57,26 @@
 		accounts.update((account) => {
 			const acc = StringToMap(account);
 			const a = acc.get(account_id) as Account;
-			a.balance += income.amount;
+			a.balance = Number(a.balance) + Number(income.amount);
 			a?.incomes.push(income);
 			acc.set(account_id, a);
 			return MapToString(acc);
 		});
+
+		const t: ToastSettings = {
+			message: 'Income added',
+			background: 'variant-filled-success rounded-md',
+			classes: 'rounded-md p-2 font-token text-dark-token text-token',
+			timeout: 2500
+		};
+		toastStore.trigger(t);
+		income = {
+			id: id,
+			type: 'one-time',
+			category: 'salary',
+			amount: 0.0,
+			date: new Date().toDateString()
+		};
 	}
 </script>
 
@@ -76,7 +91,7 @@
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">
 				<span class="font-token font-semibold capitalize">
-					{a_map.get(account_id)?.name || "account"}
+					{a_map.get(account_id)?.name || 'account'}
 				</span>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
@@ -98,7 +113,7 @@
 	<Accordion>
 		<h4 class="text-center text-md font-heading-token uppercase text-token">category</h4>
 		<AccordionItem duration={Number(1000)} rounded="rounded-md" bind:value={income.category}>
-			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
+			<svelte:fragment slot="lead"><FunctionLine class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary"
 				><span class="font-token font-semibold capitalize">
 					{income.category}
@@ -132,12 +147,9 @@
 		/>
 	</div>
 	<button
-		class="btn flex justify-start gap-x-10 rounded-md mx-auto font-token w-1/3 variant-glass-primary uppercase text-center"
-		type="submit">
-        <span >
-            <AddLine class="w-6 h-6" />
-        </span>
-        Add
-        </button
+		class="btn  gap-x-10 rounded-md mx-auto font-token w-1/3 variant-glass-primary uppercase text-center"
+		type="submit"
 	>
+		Add
+	</button>
 </form>
