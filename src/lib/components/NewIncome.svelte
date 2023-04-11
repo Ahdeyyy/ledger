@@ -9,14 +9,12 @@
 	import type { ToastSettings } from '@skeletonlabs/skeleton';
 	import { AccountCircleFill, AddLine, FunctionLine } from 'svelte-remixicon';
 
-	import { accounts, MapToString, StringToMap } from '$lib/utils/store';
+	import { accounts, current_account_id, MapToString, StringToMap } from '$lib/utils/store';
 	import type { Account, Income } from '$lib/utils/types';
 
 	const entries = StringToMap($accounts).entries();
 
 	const a_map: Map<string, Account> = new Map(entries);
-
-	let account_id: string = a_map.keys().next().value;
 
 	let categories: string[] = ['salary', 'investment', 'business', 'other'];
 
@@ -56,10 +54,10 @@
 		// update account with new income
 		accounts.update((account) => {
 			const acc = StringToMap(account);
-			const a = acc.get(account_id) as Account;
+			const a = acc.get($current_account_id) as Account;
 			a.balance = Number(a.balance) + Number(income.amount);
 			a?.incomes.push(income);
-			acc.set(account_id, a);
+			acc.set($current_account_id, a);
 			return MapToString(acc);
 		});
 
@@ -91,16 +89,16 @@
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">
 				<span class="font-token font-semibold capitalize">
-					{a_map.get(account_id)?.name || 'account'}
+					{a_map.get($current_account_id)?.name || 'account'}
 				</span>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
-				<ListBox rounded="rounded" spacing="space-y-3" bind:value={account_id}>
+				<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
 					{#each [...a_map] as [key, account]}
 						<ListBoxItem
 							rounded="rounded-md"
 							padding="p-2 capitalize"
-							bind:group={account_id}
+							bind:group={$current_account_id}
 							name="accounts"
 							value={account.id}>{account.name}</ListBoxItem
 						>
@@ -136,7 +134,7 @@
 	</Accordion>
 
 	<div class="input-group w-3/4 mx-auto input-group-divider grid-cols-[auto_1fr_auto] rounded-lg">
-		<div class="input-group-shim uppercase p-3">{a_map.get(account_id)?.currency}</div>
+		<div class="input-group-shim uppercase p-3">{a_map.get($current_account_id)?.currency}</div>
 		<input
 			type="tel"
 			placeholder="0.00"
