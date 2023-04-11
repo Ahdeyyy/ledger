@@ -169,7 +169,7 @@
 									{account.name}
 								</span>
 								<div
-									class="btn-group variant-filled align-middle grid grid-flow-col place-content-center"
+									class="btn-group variant-surface-filled align-middle rounded-md grid grid-flow-col place-content-center"
 								>
 									<button
 										on:click={() => {
