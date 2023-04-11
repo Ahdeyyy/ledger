@@ -10,7 +10,7 @@
 <article>
 	<Accordion>
 		{#each records as record}
-			<AccordionItem rounded="rounded-md">
+			<AccordionItem rounded="rounded-token">
 				<svelte:fragment slot="lead"><InformationLine class="w-6 h-6" /></svelte:fragment>
 				<svelte:fragment slot="summary">{record.amount} {currency}</svelte:fragment>
 				<svelte:fragment slot="content">

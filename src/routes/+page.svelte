@@ -155,26 +155,24 @@
 		$current_account_id = '';
 	}
 	const confirm_delete: ModalSettings = {
-	type: 'confirm',
-	// Data
-	title: 'Please Confirm',
-	body: 'Are you sure you wish to proceed?',
-	// TRUE if confirm pressed, FALSE if cancel pressed
-	
-};
-
+		type: 'confirm',
+		// Data
+		title: 'Please Confirm',
+		body: 'Are you sure you wish to proceed?'
+		// TRUE if confirm pressed, FALSE if cancel pressed
+	};
 </script>
 
 {#if a_map.size > 0}
 	<Accordion>
-		<AccordionItem duration={Number(1000)} rounded="rounded-md">
+		<AccordionItem duration={Number(1000)} rounded="rounded-token">
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">Accounts</svelte:fragment>
 			<svelte:fragment slot="content">
 				<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
 					{#each [...a_map] as [key, account]}
 						<ListBoxItem
-							rounded="rounded-md "
+							rounded="rounded-token "
 							padding="p-2"
 							bind:group={$current_account_id}
 							name="accounts"
@@ -187,7 +185,7 @@
 									{account.name}
 								</span>
 								<div
-									class="btn-group variant-surface-filled align-middle rounded-md grid grid-flow-col place-content-center"
+									class="btn-group variant-surface-filled align-middle rounded-token grid grid-flow-col place-content-center"
 								>
 									<button
 										on:click={() => {
@@ -197,7 +195,6 @@
 												}
 											};
 											modalStore.trigger(confirm_delete);
-											
 										}}
 									>
 										<DeleteBin6Line class="w-4 h-4" />
@@ -217,7 +214,7 @@
 				<button
 					on:click={openModal}
 					type="button"
-					class="grid grid-flow-col place-content-center rounded-md grid-cols-6 btn variant-soft-primary"
+					class="grid grid-flow-col place-content-center uppercase rounded-token grid-cols-6 btn variant-filled-primary"
 				>
 					<span><AddLine class="w-6 h-6" /></span>
 					<span class="col-span-5">Create Account</span>
@@ -229,17 +226,17 @@
 	<h3 class="text-center font-bold text-xl mt-5 uppercase">{account.name}</h3>
 
 	<section class="grid grid-cols-3 gap-4 mt-5">
-		<div class="card rounded-md grid gap-3 variant-soft-surface p-4">
+		<div class="card rounded-token grid gap-3 variant-filled-primary-surface p-4">
 			<header class="font-extrabold font-token text-xl">Balance</header>
 			<p class="font-token text-token">{account.balance} {account.currency}</p>
 		</div>
 
-		<article class="card p-4 rounded-md grid gap-3 variant-soft-surface">
+		<article class="card p-4 rounded-token grid gap-3 variant-filled-primary-surface">
 			<header class="font-extrabold font-token text-xl">Monthly income</header>
 			<p class="font-token text-token">{total_monthly_income} {account.currency}</p>
 		</article>
 
-		<article class="card p-4 rounded-md grid gap-3 variant-soft-surface">
+		<article class="card p-4 rounded-token grid gap-3 variant-filled-primary-surface">
 			<header class="font-extrabold font-token text-xl">Monthly expense</header>
 			<p class="font-token text-token">{total_monthly_expense} {account.currency}</p>
 		</article>
@@ -271,11 +268,23 @@
 	{/if}
 {:else}
 	<section class="grid place-content-center gap-10">
-		<p class="font-semibold font-heading-token text-5xl">Get started, create an account.</p>
+		<p class="font-bold">
+			<span
+				class="text-4xl bg-gradient-to-br  from-tertiary-300 to-primary-300 bg-clip-text text-transparent box-decoration-clone"
+			>
+				Get started,
+			</span>
+			<span
+				class="text-4xl bg-gradient-to-br from-secondary-500 to-tertiary-500 bg-clip-text text-transparent box-decoration-clone"
+			>
+				Create an account.
+			</span>
+		</p>
+
 		<button
 			on:click={openModal}
 			type="button"
-			class="btn rounded-md text-center variant-soft-primary"
+			class="btn rounded-token text-center variant-filled-primary"
 		>
 			<span class="col-span-7">Create Account</span>
 		</button>

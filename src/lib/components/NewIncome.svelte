@@ -44,7 +44,7 @@
 			const t: ToastSettings = {
 				message: 'Please enter a valid amount',
 				background: 'variant-filled-error',
-				classes: 'rounded-md p-2 font-token text-dark-token text-token',
+				classes: 'rounded-token p-2 font-token text-token',
 				timeout: 2500
 			};
 			toastStore.trigger(t);
@@ -63,8 +63,8 @@
 
 		const t: ToastSettings = {
 			message: 'Income added',
-			background: 'variant-filled-success rounded-md',
-			classes: 'rounded-md p-2 font-token text-dark-token text-token',
+			background: 'variant-filled-success rounded-token',
+			classes: 'rounded-token p-2 font-token text-token',
 			timeout: 2500
 		};
 		toastStore.trigger(t);
@@ -80,12 +80,12 @@
 
 <form
 	action=""
-	class="card p-5 text-token variant-soft-surface grid gap-4 rounded-md font-token text-dark-token"
+	class="card p-5 text-token variant-soft-surface grid gap-4 rounded-token font-token text-dark-token"
 	on:submit|preventDefault={createIncome}
 >
 	<Accordion>
 		<h4 class="text-center text-md font-heading-token uppercase text-token">Account</h4>
-		<AccordionItem duration={Number(1000)} rounded="rounded-md">
+		<AccordionItem duration={Number(1000)} rounded="rounded-token">
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">
 				<span class="font-token font-semibold capitalize">
@@ -96,7 +96,7 @@
 				<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
 					{#each [...a_map] as [key, account]}
 						<ListBoxItem
-							rounded="rounded-md"
+							rounded="rounded-token"
 							padding="p-2 capitalize"
 							bind:group={$current_account_id}
 							name="accounts"
@@ -110,7 +110,7 @@
 
 	<Accordion>
 		<h4 class="text-center text-md font-heading-token uppercase text-token">category</h4>
-		<AccordionItem duration={Number(1000)} rounded="rounded-md" bind:value={income.category}>
+		<AccordionItem duration={Number(1000)} rounded="rounded-token" bind:value={income.category}>
 			<svelte:fragment slot="lead"><FunctionLine class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary"
 				><span class="font-token font-semibold capitalize">
@@ -121,7 +121,7 @@
 				<ListBox rounded="rounded" spacing="space-y-3">
 					{#each categories as category}
 						<ListBoxItem
-							rounded="rounded-md"
+							rounded="rounded-token"
 							padding="p-2 capitalize"
 							bind:group={income.category}
 							name="categories"
@@ -133,19 +133,19 @@
 		</AccordionItem>
 	</Accordion>
 
-	<div class="input-group w-3/4 mx-auto input-group-divider grid-cols-[auto_1fr_auto] rounded-lg">
+	<div class="input-group w-3/4 mx-auto input-group-divider grid-cols-[auto_1fr_auto] rounded-token">
 		<div class="input-group-shim uppercase p-3">{a_map.get($current_account_id)?.currency}</div>
 		<input
 			type="tel"
 			placeholder="0.00"
 			name="amount"
-			class="input p-3"
+			class="input p-3 rounded"
 			id="amount"
 			bind:value={income.amount}
 		/>
 	</div>
 	<button
-		class="btn  gap-x-10 rounded-md mx-auto font-token w-1/3 variant-glass-primary uppercase text-center"
+		class="btn gap-x-10 rounded-token mx-auto font-token w-1/3 variant-filled-primary uppercase text-center"
 		type="submit"
 	>
 		Add

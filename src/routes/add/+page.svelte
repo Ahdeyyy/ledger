@@ -2,7 +2,7 @@
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import NewExpense from '$lib/components/NewExpense.svelte';
 	import NewIncome from '$lib/components/NewIncome.svelte';
-	import { StringToMap, accounts,addTabSet } from '$lib/utils/store';
+	import { StringToMap, accounts, addTabSet } from '$lib/utils/store';
 	import type { Account } from '$lib/utils/types';
 
 	let entries = StringToMap($accounts).entries();
@@ -17,19 +17,17 @@
 			{#if a_map.size > 0}
 				<NewIncome />
 			{:else}
-			<div class="grid place-content-center p-3" >
-				<a class="btn rounded-md variant-soft-primary" href="/">Create an account</a>
-
-			</div>
+				<div class="grid place-content-center p-3">
+					<a class="btn rounded-token variant-filled-primary" href="/">Create an account</a>
+				</div>
 			{/if}
 		{:else if $addTabSet === 1}
 			{#if a_map.size > 0}
 				<NewExpense />
 			{:else}
-			<div class="grid place-content-center p-3" >
-				<a class="btn rounded-md variant-soft-primary" href="/">Create an account</a>
-
-			</div>
+				<div class="grid place-content-center p-3">
+					<a class="btn rounded-token variant-filled-primary" href="/">Create an account</a>
+				</div>
 			{/if}
 		{:else}
 			<p>how??????</p>

@@ -59,7 +59,7 @@
 	{#if expenses.length > 0}
 		<Accordion>
 			<h4 class="text-center text-md font-heading-token uppercase text-token">Account</h4>
-			<AccordionItem duration={Number(1000)} rounded="rounded-md">
+			<AccordionItem duration={Number(1000)} rounded="rounded-token">
 				<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 				<svelte:fragment slot="summary">
 					<span class="font-token font-semibold capitalize">
@@ -70,7 +70,7 @@
 					<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
 						{#each [...a_map] as [key, account]}
 							<ListBoxItem
-								rounded="rounded-md"
+								rounded="rounded-token"
 								padding="p-2 capitalize"
 								bind:group={$current_account_id}
 								name="accounts"
@@ -92,11 +92,12 @@
 				$addTabSet = 1;
 			}}
 			href="/add"
-			class="btn w-1/2 mx-auto rounded-md variant-soft-primary uppercase">add expense</a
+			class="btn w-1/2 mx-auto rounded-token variant-filled-primary uppercase"
+			>add expense</a
 		>
 	{:else if a_map.size === 0}
 		<div class="grid place-content-center p-3">
-			<a class="btn rounded-md variant-soft-primary" href="/">Create an account</a>
+			<a class="btn rounded-token variant-filled-primary" href="/">Create an account</a>
 		</div>
 	{:else}
 		<div class="grid place-content-center p-3">
@@ -105,7 +106,7 @@
 					$addTabSet = 1;
 				}}
 				href="/add"
-				class="btn rounded-md variant-soft-primary uppercase">add expense</a
+				class="btn rounded-token variant-filled-primary uppercase">add expense</a
 			>
 		</div>
 	{/if}
