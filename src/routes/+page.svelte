@@ -145,6 +145,24 @@
 		};
 		modalStore.trigger(d);
 	}
+
+	function delete_account(account: Account) {
+		accounts.update((accounts) => {
+			let a_map: Map<string, Account> = StringToMap(accounts);
+			a_map.delete(account.id);
+			return MapToString(a_map);
+		});
+		$current_account_id = '';
+	}
+	const confirm_delete: ModalSettings = {
+	type: 'confirm',
+	// Data
+	title: 'Please Confirm',
+	body: 'Are you sure you wish to proceed?',
+	// TRUE if confirm pressed, FALSE if cancel pressed
+	
+};
+
 </script>
 
 {#if a_map.size > 0}
@@ -173,12 +191,13 @@
 								>
 									<button
 										on:click={() => {
-											accounts.update((a) => {
-												const acc = StringToMap(a);
-												acc.delete(account.id);
-												return MapToString(acc);
-											});
-											$current_account_id = '';
+											confirm_delete.response = (confirm) => {
+												if (confirm) {
+													delete_account(account);
+												}
+											};
+											modalStore.trigger(confirm_delete);
+											
 										}}
 									>
 										<DeleteBin6Line class="w-4 h-4" />
