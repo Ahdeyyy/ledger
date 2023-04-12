@@ -43,8 +43,8 @@
 		if (income.amount === undefined || income.amount <= 0) {
 			const t: ToastSettings = {
 				message: 'Please enter a valid amount',
-				background: 'variant-filled-error',
-				classes: 'rounded-token p-2 font-token text-token',
+				background: 'variant-soft-error',
+				classes: 'rounded-token p-2 font-token',
 				timeout: 2500
 			};
 			toastStore.trigger(t);
@@ -63,8 +63,8 @@
 
 		const t: ToastSettings = {
 			message: 'Income added',
-			background: 'variant-filled-success rounded-token',
-			classes: 'rounded-token p-2 font-token text-token',
+			background: 'variant-soft-success rounded-token',
+			classes: 'rounded-token p-2 font-token',
 			timeout: 2500
 		};
 		toastStore.trigger(t);

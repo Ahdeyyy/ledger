@@ -1,4 +1,6 @@
+// TODO: remove type from income and expenses
 type Expense = {
+
     id: string;
     amount: number;
     category: string;

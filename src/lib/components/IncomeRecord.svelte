@@ -5,18 +5,22 @@
 		ListBox,
 		ListBoxItem,
 		Table,
-		tableMapperValues
+		tableMapperValues,
+		type ModalComponent,
+		modalStore,
+		type ModalSettings
 	} from '@skeletonlabs/skeleton';
 	import { accounts, addTabSet, current_account_id, StringToMap } from '$lib/utils/store';
 	import type { TableSource } from '@skeletonlabs/skeleton';
 	import type { Account, Income } from '$lib/utils/types';
 	import { AccountCircleFill } from 'svelte-remixicon';
+	import EditRecord from './EditRecord.svelte';
 
 	let tableSource: TableSource;
 	// income_list = income_list.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 
-	const entries = StringToMap($accounts).entries();
-	const a_map: Map<string, Account> = new Map(entries);
+	let entries = StringToMap($accounts).entries();
+	let a_map: Map<string, Account> = new Map(entries);
 
 	let incomes =
 		a_map
@@ -41,8 +45,44 @@
 		meta: tableMapperValues(incomes, ['id', 'category', 'amount', 'date'])
 	};
 
+	$: {
+		entries = StringToMap($accounts).entries();
+		a_map = new Map(entries);
+		incomes =
+			a_map
+				.get($current_account_id)
+				?.incomes.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)) || [];
+		tableSource = {
+			head: ['Category', 'Amount', 'Date'],
+			body: tableMapperValues(incomes, ['category', 'amount', 'date']),
+			meta: tableMapperValues(incomes, ['id', 'category', 'amount', 'date'])
+		};
+	}
+
 	function selectionHandler(event: CustomEvent) {
 		console.log(event.detail);
+		const modalComponent: ModalComponent = {
+			// Pass a reference to your custom component
+			ref: EditRecord,
+			// Add the component properties as key/value pairs
+			props: {
+				type: 'income',
+				id: event.detail[0],
+				category: event.detail[1],
+				amount: event.detail[2],
+				date: event.detail[3]
+			},
+			// Provide a template literal for the default component slot
+			slot: '<p>Skeleton</p>'
+		};
+		const d: ModalSettings = {
+			type: 'component',
+			title: 'Edit record',
+			body: ' ',
+			// Pass the component directly:
+			component: modalComponent
+		};
+		modalStore.trigger(d);
 	}
 </script>
 
