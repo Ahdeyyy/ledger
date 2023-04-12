@@ -8,7 +8,7 @@
 	export let category: string, amount: number, id: string, date: string, type: string;
 	// Stores
 	import { modalStore } from '@skeletonlabs/skeleton';
-	
+
 	const entries = StringToMap($accounts).entries();
 
 	const a_map: Map<string, Account> = new Map(entries);
@@ -18,7 +18,7 @@
 		amount: amount,
 		id: id,
 		date: date,
-		type: type 
+		type: type
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
@@ -87,15 +87,13 @@
 		</label>
 		<label class="label">
 			<span>Amount</span>
-			<div
-				class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-token"
-			>
-				<div class="input-group-shim uppercase">{a_map.get($current_account_id)?.currency}</div>
+			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-token">
+				<div class="uppercase input-group-shim">{a_map.get($current_account_id)?.currency}</div>
 				<input
 					type="tel"
 					placeholder="0.00"
 					name="amount"
-					class="input rounded"
+					class="rounded input"
 					id="amount"
 					bind:value={record.amount}
 				/>
