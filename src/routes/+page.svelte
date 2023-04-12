@@ -225,7 +225,7 @@
 
 	<h3 class="text-center font-bold text-xl mt-5 uppercase">{account.name}</h3>
 
-	<section class="grid grid-cols-3 gap-4 mt-5">
+	<section class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-5">
 		<div class="card rounded-token grid gap-3 variant-filled-primary-surface p-4">
 			<header class="font-extrabold font-token text-xl">Balance</header>
 			<p class="font-token text-token">{account.balance} {account.currency}</p>
@@ -245,11 +245,11 @@
 	{#if pie_expense_data.labels.length > 0}
 		<!-- content here -->
 		<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly Expense</h3>
-		<section class="grid grid-cols-3 mt-5 gap-4">
+		<section class="grid grid-cols-1 lg:grid-cols-3 mt-5 gap-4">
 			<div class="variant-glass-secondary rounded-lg">
 				<Chart maxSlices="4" data={pie_expense_data} type="donut" />
 			</div>
-			<div class="col-span-2">
+			<div class="lg:col-span-2">
 				<RecordList records={monthly_expense} currency={account.currency} />
 			</div>
 		</section>
@@ -257,11 +257,11 @@
 	{#if pie_income_data.labels.length > 0}
 		<!-- content here -->
 		<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly income</h3>
-		<section class="grid grid-cols-3 mt-5 gap-4">
+		<section class="grid grid-cols-1 lg:grid-cols-3 mt-5 gap-4">
 			<div class="variant-glass-secondary rounded-lg">
 				<Chart maxSlices="4" data={pie_income_data} type="donut" />
 			</div>
-			<div class="col-span-2">
+			<div class="lg:col-span-2">
 				<RecordList records={monthly_income} currency={account.currency} />
 			</div>
 		</section>

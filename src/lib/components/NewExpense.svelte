@@ -51,7 +51,7 @@
 		if (expense.amount === undefined || expense.amount <= 0) {
 			const t: ToastSettings = {
 				message: 'Please enter an amount',
-				background: 'variant-filled-warning',
+				background: 'variant-soft-warning',
 				classes: 'rounded-token p-2 font-token text-token',
 				timeout: 2500
 			};
@@ -70,7 +70,7 @@
 		});
 		const t: ToastSettings = {
 			message: 'Expense added',
-			background: 'variant-filled-success',
+			background: 'variant-soft-success',
 			classes: 'rounded-token p-2 font-token text-token',
 			timeout: 2500
 		};
@@ -87,7 +87,7 @@
 
 <form
 	action=""
-	class="card p-5 text-token variant-soft-surface grid gap-4 rounded-token font-token text-dark-token"
+	class="card p-5 text-token mx-auto variant-soft-surface grid gap-4 rounded-token font-token text-dark-token"
 	on:submit|preventDefault={createExpense}
 >
 	<Accordion>
@@ -125,7 +125,7 @@
 				</span></svelte:fragment
 			>
 			<svelte:fragment slot="content">
-				<ListBox rounded="rounded" spacing="space-y-3">
+				<ListBox rounded="rounded-token" spacing="space-y-3">
 					{#each categories as category}
 						<ListBoxItem
 							rounded="rounded-token"
@@ -141,7 +141,7 @@
 	</Accordion>
 
 	<div class="input-group w-3/4 mx-auto input-group-divider grid-cols-[auto_1fr_auto] rounded-token">
-		<div class="input-group-shim uppercase p-3">{a_map.get($current_account_id)?.currency}</div>
+		<div class="input-group-shim p-3">{a_map.get($current_account_id)?.currency}</div>
 		<input
 			type="tel"
 			placeholder="0.00"
@@ -154,7 +154,7 @@
 
 	<button
 		type="submit"
-		class="btn variant-filled-primary uppercase rounded-token w-1/3 mx-auto text-center"
+		class="btn variant-filled-primary font-token rounded-token w-1/3 mx-auto text-center"
 		>Add</button
 	>
 </form>

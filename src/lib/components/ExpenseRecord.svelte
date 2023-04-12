@@ -84,7 +84,7 @@
 				date: event.detail[3]
 			},
 			// Provide a template literal for the default component slot
-			slot: '<p>Skeleton</p>'
+			slot: '<p>Edit expense</p>'
 		};
 		const d: ModalSettings = {
 			type: 'component',

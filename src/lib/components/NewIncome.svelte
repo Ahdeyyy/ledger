@@ -80,20 +80,20 @@
 
 <form
 	action=""
-	class="card p-5 text-token variant-soft-surface grid gap-4 rounded-token font-token text-dark-token"
+	class="card p-5 text-token variant-soft-surface mx-auto grid lg:gap-4 gap-2 rounded-token font-token text-dark-token"
 	on:submit|preventDefault={createIncome}
 >
 	<Accordion>
 		<h4 class="text-center text-md font-heading-token uppercase text-token">Account</h4>
 		<AccordionItem duration={Number(1000)} rounded="rounded-token">
-			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
+			<svelte:fragment slot="lead"><AccountCircleFill class="lg:w-8 lg:h-8 w-4 h-4" /></svelte:fragment>
 			<svelte:fragment slot="summary">
 				<span class="font-token font-semibold capitalize">
 					{a_map.get($current_account_id)?.name || 'account'}
 				</span>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
-				<ListBox rounded="rounded" spacing="space-y-3" bind:value={$current_account_id}>
+				<ListBox rounded="rounded-token" spacing="space-y-3" bind:value={$current_account_id}>
 					{#each [...a_map] as [key, account]}
 						<ListBoxItem
 							rounded="rounded-token"
@@ -134,7 +134,7 @@
 	</Accordion>
 
 	<div class="input-group w-3/4 mx-auto input-group-divider grid-cols-[auto_1fr_auto] rounded-token">
-		<div class="input-group-shim uppercase p-3">{a_map.get($current_account_id)?.currency}</div>
+		<div class="input-group-shim p-3">{a_map.get($current_account_id)?.currency}</div>
 		<input
 			type="tel"
 			placeholder="0.00"
@@ -145,7 +145,7 @@
 		/>
 	</div>
 	<button
-		class="btn gap-x-10 rounded-token mx-auto font-token w-1/3 variant-filled-primary uppercase text-center"
+		class="btn rounded-token mx-auto font-token w-1/3 variant-filled-primary text-center"
 		type="submit"
 	>
 		Add
