@@ -62,6 +62,30 @@
 
 		modalStore.close();
 	}
+
+	function delete_record(): void{
+		if (type === "expense"){
+			accounts.update((account) => {
+				const acc = StringToMap(account);
+				const a = acc.get($current_account_id) as Account;
+				a.expenses = a.expenses.filter((expense) => expense.id !== record.id);
+				a.balance = Number(a.balance) + Number(amount);
+				acc.set($current_account_id, a);
+				return MapToString(acc);
+			})
+			
+		} else {
+			accounts.update((account)=> {
+				const acc = StringToMap(account);
+				const a = acc.get($current_account_id) as Account;
+				a.incomes = a.incomes.filter((income) => income.id !== record.id);
+				a.balance = Number(a.balance) - Number(amount);
+				acc.set($current_account_id, a);
+				return MapToString(acc);
+			})
+		}
+		modalStore.close();
+	}
 	// Base Classes
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
@@ -103,6 +127,7 @@
 	<!-- prettier-ignore -->
 	<footer class="modal-footer {parent.regionFooter}">
         <button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
+		<button class="btn variant-filled-error" on:click={delete_record} >Delete</button>
         <button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Edit</button>
     </footer>
 </div>
