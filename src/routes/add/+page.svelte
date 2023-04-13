@@ -17,7 +17,7 @@
 			{#if a_map.size > 0}
 				<NewIncome />
 			{:else}
-				<div class="grid place-content-center p-3">
+				<div class="grid p-3 place-content-center">
 					<a class="btn rounded-token variant-filled-primary" href="/">Create an account</a>
 				</div>
 			{/if}
@@ -25,7 +25,7 @@
 			{#if a_map.size > 0}
 				<NewExpense />
 			{:else}
-				<div class="grid place-content-center p-3">
+				<div class="grid p-3 place-content-center">
 					<a class="btn rounded-token variant-filled-primary" href="/">Create an account</a>
 				</div>
 			{/if}

@@ -8,7 +8,7 @@
 	export let category: string, amount: number, id: string, date: string, type: string;
 	// Stores
 	import { modalStore } from '@skeletonlabs/skeleton';
-	
+
 	const entries = StringToMap($accounts).entries();
 
 	const a_map: Map<string, Account> = new Map(entries);
@@ -18,7 +18,7 @@
 		amount: amount,
 		id: id,
 		date: date,
-		type: type 
+		type: type
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
@@ -62,6 +62,30 @@
 
 		modalStore.close();
 	}
+
+	function delete_record(): void{
+		if (type === "expense"){
+			accounts.update((account) => {
+				const acc = StringToMap(account);
+				const a = acc.get($current_account_id) as Account;
+				a.expenses = a.expenses.filter((expense) => expense.id !== record.id);
+				a.balance = Number(a.balance) + Number(amount);
+				acc.set($current_account_id, a);
+				return MapToString(acc);
+			})
+			
+		} else {
+			accounts.update((account)=> {
+				const acc = StringToMap(account);
+				const a = acc.get($current_account_id) as Account;
+				a.incomes = a.incomes.filter((income) => income.id !== record.id);
+				a.balance = Number(a.balance) - Number(amount);
+				acc.set($current_account_id, a);
+				return MapToString(acc);
+			})
+		}
+		modalStore.close();
+	}
 	// Base Classes
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
@@ -87,15 +111,13 @@
 		</label>
 		<label class="label">
 			<span>Amount</span>
-			<div
-				class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-token"
-			>
-				<div class="input-group-shim uppercase">{a_map.get($current_account_id)?.currency}</div>
+			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-token">
+				<div class="uppercase input-group-shim">{a_map.get($current_account_id)?.currency}</div>
 				<input
 					type="tel"
 					placeholder="0.00"
 					name="amount"
-					class="input rounded"
+					class="rounded input"
 					id="amount"
 					bind:value={record.amount}
 				/>
@@ -105,6 +127,7 @@
 	<!-- prettier-ignore -->
 	<footer class="modal-footer {parent.regionFooter}">
         <button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
+		<button class="btn variant-filled-error" on:click={delete_record} >Delete</button>
         <button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Edit</button>
     </footer>
 </div>

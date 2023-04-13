@@ -84,7 +84,7 @@
 				date: event.detail[3]
 			},
 			// Provide a template literal for the default component slot
-			slot: '<p>Skeleton</p>'
+			slot: '<p>Edit expense</p>'
 		};
 		const d: ModalSettings = {
 			type: 'component',
@@ -100,11 +100,11 @@
 <section class="grid gap-5 mt-4">
 	{#if expenses.length > 0}
 		<Accordion>
-			<h4 class="text-center text-md font-heading-token uppercase text-token">Account</h4>
+			<h4 class="text-center uppercase text-md font-heading-token text-token">Account</h4>
 			<AccordionItem duration={Number(1000)} rounded="rounded-token">
 				<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 				<svelte:fragment slot="summary">
-					<span class="font-token font-semibold capitalize">
+					<span class="font-semibold capitalize font-token">
 						{a_map.get($current_account_id)?.name || 'account'}
 					</span>
 				</svelte:fragment>
@@ -134,20 +134,20 @@
 				$addTabSet = 1;
 			}}
 			href="/add"
-			class="btn w-1/2 mx-auto rounded-token variant-filled-primary uppercase">add expense</a
+			class="w-1/2 mx-auto uppercase btn rounded-token variant-filled-primary">add expense</a
 		>
 	{:else if a_map.size === 0}
-		<div class="grid place-content-center p-3">
+		<div class="grid p-3 place-content-center">
 			<a class="btn rounded-token variant-filled-primary" href="/">Create an account</a>
 		</div>
 	{:else}
-		<div class="grid place-content-center p-3">
+		<div class="grid p-3 place-content-center">
 			<a
 				on:click={() => {
 					$addTabSet = 1;
 				}}
 				href="/add"
-				class="btn rounded-token variant-filled-primary uppercase">add expense</a
+				class="uppercase btn rounded-token variant-filled-primary">add expense</a
 			>
 		</div>
 	{/if}

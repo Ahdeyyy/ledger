@@ -51,7 +51,7 @@
 		if (expense.amount === undefined || expense.amount <= 0) {
 			const t: ToastSettings = {
 				message: 'Please enter an amount',
-				background: 'variant-filled-warning',
+				background: 'variant-soft-warning',
 				classes: 'rounded-token p-2 font-token text-token',
 				timeout: 2500
 			};
@@ -70,7 +70,7 @@
 		});
 		const t: ToastSettings = {
 			message: 'Expense added',
-			background: 'variant-filled-success',
+			background: 'variant-soft-success',
 			classes: 'rounded-token p-2 font-token text-token',
 			timeout: 2500
 		};
@@ -87,15 +87,15 @@
 
 <form
 	action=""
-	class="card p-5 text-token variant-soft-surface grid gap-4 rounded-token font-token text-dark-token"
+	class="grid gap-4 p-5 mx-auto card text-token variant-soft-surface rounded-token font-token text-dark-token"
 	on:submit|preventDefault={createExpense}
 >
 	<Accordion>
-		<h4 class="text-center text-md font-heading-token uppercase text-token">Account</h4>
+		<h4 class="text-center uppercase text-md font-heading-token text-token">Account</h4>
 		<AccordionItem duration={Number(1000)} rounded="rounded-token">
 			<svelte:fragment slot="lead"><AccountCircleFill class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary">
-				<span class="font-token font-semibold capitalize">
+				<span class="font-semibold capitalize font-token">
 					{a_map.get($current_account_id)?.name || 'accounts'}
 				</span>
 			</svelte:fragment>
@@ -116,16 +116,16 @@
 	</Accordion>
 
 	<Accordion>
-		<h4 class="text-center text-md font-heading-token uppercase text-token">category</h4>
+		<h4 class="text-center uppercase text-md font-heading-token text-token">category</h4>
 		<AccordionItem duration={Number(1000)} rounded="rounded-token" bind:value={expense.category}>
 			<svelte:fragment slot="lead"><FunctionLine class="w-8 h-8" /></svelte:fragment>
 			<svelte:fragment slot="summary"
-				><span class="font-token font-semibold capitalize">
+				><span class="font-semibold capitalize font-token">
 					{expense.category}
 				</span></svelte:fragment
 			>
 			<svelte:fragment slot="content">
-				<ListBox rounded="rounded" spacing="space-y-3">
+				<ListBox rounded="rounded-token" spacing="space-y-3">
 					{#each categories as category}
 						<ListBoxItem
 							rounded="rounded-token"
@@ -140,13 +140,15 @@
 		</AccordionItem>
 	</Accordion>
 
-	<div class="input-group w-3/4 mx-auto input-group-divider grid-cols-[auto_1fr_auto] rounded-token">
-		<div class="input-group-shim uppercase p-3">{a_map.get($current_account_id)?.currency}</div>
+	<div
+		class="input-group w-3/4 mx-auto input-group-divider grid-cols-[auto_1fr_auto] rounded-token"
+	>
+		<div class="p-3 input-group-shim">{a_map.get($current_account_id)?.currency}</div>
 		<input
 			type="tel"
 			placeholder="0.00"
 			name="amount"
-			class="input p-3 rounded"
+			class="p-3 rounded input"
 			id="amount"
 			bind:value={expense.amount}
 		/>
@@ -154,7 +156,7 @@
 
 	<button
 		type="submit"
-		class="btn variant-filled-primary uppercase rounded-token w-1/3 mx-auto text-center"
+		class="w-1/3 mx-auto text-center btn variant-filled-primary font-token rounded-token"
 		>Add</button
 	>
 </form>

@@ -68,9 +68,9 @@
 
 			accounts.update((a) => {
 				const acc = StringToMap(a);
-				new_account.incomes = acc.get(id)?.incomes || []
-				new_account.expenses = acc.get(id)?.expenses || []
-				acc.set(id,new_account);
+				new_account.incomes = acc.get(id)?.incomes || [];
+				new_account.expenses = acc.get(id)?.expenses || [];
+				acc.set(id, new_account);
 				return MapToString(acc);
 			});
 			modalStore.close();

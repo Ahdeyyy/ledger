@@ -179,13 +179,13 @@
 							value={account.id}
 						>
 							<article
-								class="grid align-middle grid-flow-col place-content-center grid-cols-8 gap-x-6"
+								class="grid grid-flow-col grid-cols-8 align-middle place-content-center gap-x-6"
 							>
-								<span class="col-span-7 align-baseline mt-1">
+								<span class="col-span-7 mt-1 align-baseline">
 									{account.name}
 								</span>
 								<div
-									class="btn-group variant-surface-filled align-middle rounded-token grid grid-flow-col place-content-center"
+									class="grid grid-flow-col align-middle btn-group variant-surface-filled rounded-token place-content-center"
 								>
 									<button
 										on:click={() => {
@@ -214,7 +214,7 @@
 				<button
 					on:click={openModal}
 					type="button"
-					class="grid grid-flow-col place-content-center uppercase rounded-token grid-cols-6 btn variant-filled-primary"
+					class="grid grid-flow-col grid-cols-6 uppercase place-content-center rounded-token btn variant-filled-primary"
 				>
 					<span><AddLine class="w-6 h-6" /></span>
 					<span class="col-span-5">Create Account</span>
@@ -223,59 +223,59 @@
 		</AccordionItem>
 	</Accordion>
 
-	<h3 class="text-center font-bold text-xl mt-5 uppercase">{account.name}</h3>
+	<h3 class="mt-5 text-xl font-bold text-center uppercase">{account.name}</h3>
 
-	<section class="grid grid-cols-3 gap-4 mt-5">
-		<div class="card rounded-token grid gap-3 variant-filled-primary-surface p-4">
-			<header class="font-extrabold font-token text-xl">Balance</header>
+	<section class="grid grid-cols-1 gap-4 mt-5 lg:grid-cols-3">
+		<div class="grid gap-3 p-4 card rounded-token variant-filled-primary-surface">
+			<header class="text-xl font-extrabold font-token">Balance</header>
 			<p class="font-token text-token">{account.balance} {account.currency}</p>
 		</div>
 
-		<article class="card p-4 rounded-token grid gap-3 variant-filled-primary-surface">
-			<header class="font-extrabold font-token text-xl">Monthly income</header>
+		<article class="grid gap-3 p-4 capitalize card rounded-token variant-filled-primary-surface">
+			<header class="text-xl font-extrabold font-token">Monthly income</header>
 			<p class="font-token text-token">{total_monthly_income} {account.currency}</p>
 		</article>
 
-		<article class="card p-4 rounded-token grid gap-3 variant-filled-primary-surface">
-			<header class="font-extrabold font-token text-xl">Monthly expense</header>
+		<article class="grid gap-3 p-4 capitalize card rounded-token variant-filled-primary-surface">
+			<header class="text-xl font-extrabold font-token">Monthly expense</header>
 			<p class="font-token text-token">{total_monthly_expense} {account.currency}</p>
 		</article>
 	</section>
 
 	{#if pie_expense_data.labels.length > 0}
 		<!-- content here -->
-		<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly Expense</h3>
-		<section class="grid grid-cols-3 mt-5 gap-4">
-			<div class="variant-glass-secondary rounded-lg">
+		<h3 class="mt-4 mb-4 text-xl text-center capitalize text-token font-token">Monthly Expense</h3>
+		<section class="grid grid-cols-1 gap-4 mt-5 lg:grid-cols-3">
+			<div class="rounded-lg variant-glass-secondary">
 				<Chart maxSlices="4" data={pie_expense_data} type="donut" />
 			</div>
-			<div class="col-span-2">
+			<div class="lg:col-span-2">
 				<RecordList records={monthly_expense} currency={account.currency} />
 			</div>
 		</section>
 	{/if}
 	{#if pie_income_data.labels.length > 0}
 		<!-- content here -->
-		<h3 class="text-xl text-token font-token mt-4 mb-4 text-center">Monthly income</h3>
-		<section class="grid grid-cols-3 mt-5 gap-4">
-			<div class="variant-glass-secondary rounded-lg">
+		<h3 class="mt-4 mb-4 text-xl text-center capitalize text-token font-token">Monthly income</h3>
+		<section class="grid grid-cols-1 gap-4 mt-5 lg:grid-cols-3">
+			<div class="rounded-lg variant-glass-secondary">
 				<Chart maxSlices="4" data={pie_income_data} type="donut" />
 			</div>
-			<div class="col-span-2">
+			<div class="lg:col-span-2">
 				<RecordList records={monthly_income} currency={account.currency} />
 			</div>
 		</section>
 	{/if}
 {:else}
-	<section class="grid place-content-center gap-10">
+	<section class="grid gap-10 place-content-center">
 		<p class="font-bold">
 			<span
-				class="text-4xl bg-gradient-to-br  from-tertiary-300 to-primary-300 bg-clip-text text-transparent box-decoration-clone"
+				class="text-4xl text-transparent bg-gradient-to-br from-tertiary-300 to-primary-300 bg-clip-text box-decoration-clone"
 			>
 				Get started,
 			</span>
 			<span
-				class="text-4xl bg-gradient-to-br from-secondary-500 to-tertiary-500 bg-clip-text text-transparent box-decoration-clone"
+				class="text-4xl text-transparent bg-gradient-to-br from-secondary-500 to-tertiary-500 bg-clip-text box-decoration-clone"
 			>
 				Create an account.
 			</span>
@@ -284,7 +284,7 @@
 		<button
 			on:click={openModal}
 			type="button"
-			class="btn rounded-token text-center variant-filled-primary"
+			class="text-center btn rounded-token variant-filled-primary"
 		>
 			<span class="col-span-7">Create Account</span>
 		</button>
