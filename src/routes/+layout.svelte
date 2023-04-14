@@ -19,7 +19,7 @@
 		},
 		{
 			path: '/add',
-			label: 'new',
+			label: 'New',
 			icon: AddLine,
 			class: 'text-soft-primary'
 		},

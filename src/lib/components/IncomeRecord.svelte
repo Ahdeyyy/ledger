@@ -123,7 +123,7 @@
 				$addTabSet = 0;
 			}}
 			href="/add"
-			class="w-1/2 mx-auto uppercase btn rounded-token variant-filled-primary">add income</a
+			class="w-1/2 mx-auto btn capitalize rounded-token variant-filled-primary">add income</a
 		>
 	{:else if a_map.size === 0}
 		<div class="grid p-3 place-content-center">
@@ -136,7 +136,7 @@
 					$addTabSet = 0;
 				}}
 				href="/add"
-				class="uppercase btn rounded-token variant-filled-primary">add income</a
+				class="btn capitalize rounded-token variant-filled-primary">add income</a
 			>
 		</div>
 	{/if}
