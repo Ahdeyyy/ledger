@@ -3,7 +3,6 @@ type Expense = {
 	id: string;
 	amount: number;
 	category: string;
-	type: string;
 	date: string;
 };
 
@@ -11,7 +10,6 @@ type Income = {
 	id: string;
 	amount: number;
 	category: string;
-	type: string;
 	date: string;
 };
 

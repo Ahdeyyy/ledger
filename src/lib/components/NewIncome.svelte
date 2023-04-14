@@ -32,7 +32,6 @@
 
 	let income: Income = {
 		id: id,
-		type: 'one-time',
 		category: 'salary',
 		amount: 0.0,
 		date: new Date().toDateString()
@@ -70,7 +69,6 @@
 		toastStore.trigger(t);
 		income = {
 			id: id,
-			type: 'one-time',
 			category: 'salary',
 			amount: 0.0,
 			date: new Date().toDateString()

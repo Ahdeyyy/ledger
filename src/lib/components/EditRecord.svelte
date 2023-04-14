@@ -18,7 +18,6 @@
 		amount: amount,
 		id: id,
 		date: date,
-		type: type
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
