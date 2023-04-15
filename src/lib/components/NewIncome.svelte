@@ -19,12 +19,13 @@
 	let categories: string[] = ['salary', 'investment', 'business', 'other'];
 
 	// generate random id
-	let rand_ind = Math.floor(Math.random() * 9) + 2;
+	let rand_ind = Math.floor(Math.random() * 2) + 2;
 	let id = Math.random()
 		.toString(36)
 		.slice(rand_ind, rand_ind + 9);
 
 	if (a_map.has(id)) {
+		rand_ind = Math.floor(Math.random() * 2) + 2;
 		id = Math.random()
 			.toString(36)
 			.slice(rand_ind, rand_ind + 9);
@@ -34,7 +35,7 @@
 		id: id,
 		category: 'salary',
 		amount: 0.0,
-		date: new Date().toDateString()
+		date: new Date().toString()
 	};
 
 	function createIncome() {
@@ -68,10 +69,12 @@
 		};
 		toastStore.trigger(t);
 		income = {
-			id: id,
+			id: Math.random()
+				.toString(36)
+				.slice(rand_ind, rand_ind + 9),
 			category: 'salary',
 			amount: 0.0,
-			date: new Date().toDateString()
+			date: new Date().toString()
 		};
 	}
 </script>

@@ -27,12 +27,13 @@
 	const a_map: Map<string, Account> = new Map(entries);
 
 	// generate random id
-	let rand_ind = Math.floor(Math.random() * 9) + 2;
+	let rand_ind = Math.floor(Math.random() * 2) + 2;
 	let id = Math.random()
 		.toString(36)
 		.slice(rand_ind, rand_ind + 9);
 
 	if (a_map.has(id)) {
+		rand_ind = Math.floor(Math.random() * 2) + 2;
 		id = Math.random()
 			.toString(36)
 			.slice(rand_ind, rand_ind + 9);
@@ -42,7 +43,7 @@
 		id: id,
 		category: 'food',
 		amount: 0.0,
-		date: new Date().toDateString()
+		date: new Date().toString()
 	};
 
 	function createExpense() {
@@ -75,10 +76,12 @@
 		};
 		toastStore.trigger(t);
 		expense = {
-			id: id,
+			id: Math.random()
+			.toString(36)
+			.slice(rand_ind, rand_ind + 9),
 			category: 'food',
 			amount: 0.0,
-			date: new Date().toDateString()
+			date: new Date().toString()
 		};
 	}
 </script>
