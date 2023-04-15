@@ -29,21 +29,58 @@ alternatively run `pnpm tauri dev` to run the desktop version
 
 ### creating an account
 
+
+https://user-images.githubusercontent.com/85193076/232256299-edcec3cc-ad94-439c-ac99-51979fbab941.mp4
+
+
 ### editing an account
+
+
+https://user-images.githubusercontent.com/85193076/232256331-4b6d8c80-a9fa-4b7a-9166-b93d16c4bd78.mp4
+
 
 ### deleting an account
 
+
+https://user-images.githubusercontent.com/85193076/232256304-b1b73c1b-ade3-4989-8594-03fb41dc9444.mp4
+
+
 ### adding income record
+
+          
+
+https://user-images.githubusercontent.com/85193076/232256292-a4356474-8674-460b-9343-4bd3c5a83278.mp4
+
 
 ### editing income record
 
+
+Uploading editing income.mp4…
+
+
 ### deleting income record
+
+
+Uploading deleting income.mp4…
+
 
 ### addding expense record
 
+
+https://user-images.githubusercontent.com/85193076/232256286-d36d9621-ad9a-4ec1-8724-5fd6f51fa2c7.mp4
+
+
 ### editing expense record
 
+
+Uploading editing expenses.mp4…
+
+
 ### deleting expense record
+
+
+Uploading deleting expenses.mp4…
+
 
 ### Technology Stack
 
