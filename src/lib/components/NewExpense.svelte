@@ -40,7 +40,6 @@
 
 	let expense: Expense = {
 		id: id,
-		type: 'one-time',
 		category: 'food',
 		amount: 0.0,
 		date: new Date().toDateString()
@@ -77,7 +76,6 @@
 		toastStore.trigger(t);
 		expense = {
 			id: id,
-			type: 'one-time',
 			category: 'food',
 			amount: 0.0,
 			date: new Date().toDateString()

@@ -214,10 +214,9 @@
 				<button
 					on:click={openModal}
 					type="button"
-					class="grid grid-flow-col grid-cols-6 uppercase place-content-center rounded-token btn variant-filled-primary"
+					class="capitalize rounded-token btn variant-filled-primary"
 				>
-					<span><AddLine class="w-6 h-6" /></span>
-					<span class="col-span-5">Create Account</span>
+					<span>Create Account</span>
 				</button>
 			</svelte:fragment>
 		</AccordionItem>

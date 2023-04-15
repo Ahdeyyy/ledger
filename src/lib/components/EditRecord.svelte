@@ -18,7 +18,6 @@
 		amount: amount,
 		id: id,
 		date: date,
-		type: type
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
@@ -63,8 +62,8 @@
 		modalStore.close();
 	}
 
-	function delete_record(): void{
-		if (type === "expense"){
+	function delete_record(): void {
+		if (type === 'expense') {
 			accounts.update((account) => {
 				const acc = StringToMap(account);
 				const a = acc.get($current_account_id) as Account;
@@ -72,17 +71,16 @@
 				a.balance = Number(a.balance) + Number(amount);
 				acc.set($current_account_id, a);
 				return MapToString(acc);
-			})
-			
+			});
 		} else {
-			accounts.update((account)=> {
+			accounts.update((account) => {
 				const acc = StringToMap(account);
 				const a = acc.get($current_account_id) as Account;
 				a.incomes = a.incomes.filter((income) => income.id !== record.id);
 				a.balance = Number(a.balance) - Number(amount);
 				acc.set($current_account_id, a);
 				return MapToString(acc);
-			})
+			});
 		}
 		modalStore.close();
 	}

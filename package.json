@@ -1,6 +1,6 @@
 {
-	"name": "finance-traker",
-	"version": "0.0.1",
+	"name": "finance-tracker",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -41,11 +41,5 @@
 		"vite": "^4.2.0"
 	},
 	"type": "module",
-	"dependencies": {
-		"@auth/core": "^0.5.1",
-		"@auth/sveltekit": "^0.3.0",
-		"@prisma/client": "^4.12.0",
-		"tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log",
-		"tauri-plugin-sql-api": "github:tauri-apps/tauri-plugin-sql"
-	}
+	"dependencies": {}
 }
