@@ -55,13 +55,16 @@ https://user-images.githubusercontent.com/85193076/232256292-a4356474-8674-460b-
 ### editing income record
 
 
-https://github.com/Ahdeyyy/ledger/blob/master/demo%20videos/editing%20income.mp4
+https://user-images.githubusercontent.com/85193076/232256537-f67d7775-1537-4340-bb4b-c50656187c72.mp4
 
 
 ### deleting income record
 
 
-https://github.com/Ahdeyyy/ledger/blob/master/demo%20videos/deleting%20income.mp4
+
+
+https://user-images.githubusercontent.com/85193076/232256632-4d5e5cbf-13eb-4a26-8ca4-aa84d65fa3b0.mp4
+
 
 
 ### addding expense record
@@ -73,13 +76,17 @@ https://user-images.githubusercontent.com/85193076/232256286-d36d9621-ad9a-4ec1-
 ### editing expense record
 
 
-Uploading editing expenses.mp4…
+
+https://user-images.githubusercontent.com/85193076/232256620-13c47bdc-3030-4acf-8d16-b3976e5a7376.mp4
+
 
 
 ### deleting expense record
 
 
-Uploading deleting expenses.mp4…
+
+https://user-images.githubusercontent.com/85193076/232256560-1811e16f-81d8-444a-8b3f-22d8f0371d5d.mp4
+
 
 
 ### Technology Stack
