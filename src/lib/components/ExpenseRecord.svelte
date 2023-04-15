@@ -21,6 +21,7 @@
 	import type { Account, Expense } from '$lib/utils/types';
 	import { AccountCircleFill } from 'svelte-remixicon';
 	import EditRecord from './EditRecord.svelte';
+	import { element } from 'svelte/internal';
 
 	// expenses = expenses.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 	let tableSource: TableSource;
@@ -35,12 +36,28 @@
 			.get($current_account_id)
 			?.expenses.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)) || [];
 
+	expenses = expenses.map((element) => {
+		return {
+			id: element.id,
+			category: element.category,
+			amount: element.amount,
+			date: new Date(element.date).toDateString()
+		};
+	});
 	$: {
 		expenses =
 			a_map
 				.get($current_account_id)
 				?.expenses.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)) || [];
 
+		expenses = expenses.map((element) => {
+			return {
+				id: element.id,
+				category: element.category,
+				amount: element.amount,
+				date: new Date(element.date).toDateString()
+			};
+		});
 		tableSource = {
 			head: ['Category', 'Amount', 'Date'],
 			body: tableMapperValues(expenses, ['category', 'amount', 'date']),
@@ -62,6 +79,14 @@
 			a_map
 				.get($current_account_id)
 				?.expenses.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)) || [];
+		expenses = expenses.map((element) => {
+			return {
+				id: element.id,
+				category: element.category,
+				amount: element.amount,
+				date: new Date(element.date).toDateString()
+			};
+		});
 
 		tableSource = {
 			head: ['Category', 'Amount', 'Date'],
