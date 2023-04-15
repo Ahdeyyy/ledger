@@ -55,13 +55,13 @@ https://user-images.githubusercontent.com/85193076/232256292-a4356474-8674-460b-
 ### editing income record
 
 
-Uploading editing income.mp4…
+https://github.com/Ahdeyyy/ledger/blob/master/demo%20videos/editing%20income.mp4
 
 
 ### deleting income record
 
 
-Uploading deleting income.mp4…
+https://github.com/Ahdeyyy/ledger/blob/master/demo%20videos/deleting%20income.mp4
 
 
 ### addding expense record
